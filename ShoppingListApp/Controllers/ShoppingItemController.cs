@@ -38,8 +38,7 @@ namespace ShoppingListApp.Controllers
             shoppingItemRepository.DeleteShoppingItem(itemID);// itemName);
             return RedirectToAction("List");
         }
-
-        [HttpPost]
+        
         public RedirectToActionResult ToggleUrgent(int itemID)//string itemName)
         {
             shoppingItemRepository.ToggleUrgent(itemID);// itemName);

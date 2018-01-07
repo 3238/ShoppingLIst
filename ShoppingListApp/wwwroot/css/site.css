@@ -1,4 +1,12 @@
-﻿.color-white
+﻿* 
+{
+    font-family: 'Open sans', sans-serif;
+}
+
+
+
+
+.color-white
 {
     color:white;
 }
@@ -10,9 +18,13 @@
 {
     color:lightgray;
 }
-i
+.text-red 
 {
-    margin-right:7px;
+    color:orangered;
+}
+i 
+{
+    margin-right: 7px;
 }
 .i-nomargin
 {

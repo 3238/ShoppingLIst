@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingListApp.Infrastructure.Models
 {
-    public enum Store { Lidl, Aldi, Colruyt, AlbertHeijn, Carrefour, Krantenwinkel, Vaporshop}
+    public enum Store { Lidl, Aldi, Colruyt, AlbertHeijn, Carrefour, Krantenwinkel, Vaporshop, PitEnPit, Amazon }
 
     public class ShoppingItem
     {

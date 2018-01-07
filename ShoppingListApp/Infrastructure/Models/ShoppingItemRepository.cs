@@ -34,7 +34,7 @@ namespace ShoppingListApp.Infrastructure.Models
         {
             ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
             if (s == null)
-                return;
+                throw new ArgumentNullException();
             appDbContext.ShoppingItems.Remove(s);
             appDbContext.SaveChanges();
         }
@@ -43,7 +43,7 @@ namespace ShoppingListApp.Infrastructure.Models
         {
             ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
             if (s == null)
-                return;
+                throw new ArgumentNullException();
             s.Urgent = !s.Urgent;
             appDbContext.SaveChanges();
         }

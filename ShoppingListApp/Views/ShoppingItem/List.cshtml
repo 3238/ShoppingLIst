@@ -26,7 +26,7 @@
     <table class="table" style="margin:0px">
         @using (Html.BeginForm("ShoppingItem"))
         {
-        @foreach (var shop in Model.ShoppingItemRepository.ShoppingItems.OrderBy(x=> x.Urgent).ThenBy(x=> x.Store).Select(x => x.Store).Distinct())
+        @foreach (var shop in Model.ShoppingItemRepository.ShoppingItems.OrderByDescending(x=> x.Urgent).ThenBy(x=> x.Store).Select(x => x.Store).Distinct())
         {
         <tr>
             <td class="bg-lightgray bold text-primary" colspan="3"><i class="fa fa-shopping-basket"></i>&nbsp;@shop.ToString().ToUpper()</td>
@@ -34,12 +34,17 @@
         @foreach (var item in Model.ShoppingItemRepository.ShoppingItems.Where(x => x.Store == shop).OrderByDescending(x => x.ID))
         {
         <tr>
-            <td><i class="fa fa-arrow-circle-right (@item.Urgent ? text-lightgray : text-warning)"></i>&nbsp;@item.Name</td>
-            <td style="width:25px;"><a asp-controller="ShoppingItem" asp-action="ToggleUrgent" asp-route-itemID="@item.ID"><i class="fa fa-exclamation-circle (@item.Urgent ? text-lightgray : text-warning)"></i></a>
-            
-                                    <button class="btn-default btn-xs btn" asp-controller="ShoppingItem" asp-action="ToggleUrgent" asp-route-itemID="@item.ID">-</button>
+            <td>
+                <i class="fa fa-arrow-circle-right @(item.Urgent == true ? "text-red" : "text-lightgray")"></i>
+                <span class="@(item.Urgent == true ? "text-red bold" : "")">@item.Name</span>
             </td>
-            <td align="right" style="width:25px;"><button class="btn-default btn-xs btn" asp-controller="ShoppingItem" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button></td>
+            <td style="width:25px;">
+                <a  asp-controller="ShoppingItem" asp-action="ToggleUrgent" asp-route-itemID="@item.ID">
+                    <i class="fa fa-exclamation-circle @(item.Urgent == true ? "text-red" : "text-lightgray")"></i></a>
+            </td>
+            <td align="right" style="width:25px;">
+                <button class="btn-default btn-xs btn" asp-controller="ShoppingItem" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button>
+            </td>
         </tr>
         }
         }
