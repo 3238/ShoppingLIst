@@ -2,3 +2,27 @@
 {
     color:white;
 }
+.text-lightgray 
+{
+    color: gainsboro;
+}
+.text-mediumgray 
+{
+    color:lightgray;
+}
+i
+{
+    margin-right:7px;
+}
+.i-nomargin
+{
+    margin-right:0px;
+}
+.bg-lightgray
+{
+    background-color:whitesmoke;
+}
+.bold
+{
+    font-weight:bold;
+}

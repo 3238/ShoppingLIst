@@ -15,14 +15,17 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-static-top bg-primary">
         <div class="container">
             <nav>
                 <div class="navbar-header bg-primary">
-                    <a class="navbar-brand color-white" asp-action="List" asp-controller="ShoppingItem">ShoppingList</a>
-                    <a class="pull-right color-white" style="margin-top:13px" asp-controller="Home" asp-action="Info">info</a>
+                    <a class="navbar-brand color-white" asp-action="List" asp-controller="ShoppingItem">
+                        <i class="fa fa-shopping-cart i-nomargin"></i>&nbsp;ShoppingList
+                    </a>
+                    <a class="pull-right color-white nav" style="margin-top:13px" asp-controller="Home" asp-action="Info"><i class="fa fa-info-circle i-nomargin"></i>&nbsp;info</a>
                 </div>
             </nav>
         </div>
@@ -30,8 +33,8 @@
     @RenderBody()
     <div class="container">
         <hr style="margin-top:0px" />
-        <span class="text-muted" style="font-size:9px;">@DateTime.Now.ToLongDateString()</span><br />
-        <h3 class="text-muted" style="margin-top:0px;font-size:19px;color:lightgrey">@DateTime.Now.ToString("HH:mm")</h3>
+        <span class="text-lightgray" style="font-size:9px;">@DateTime.Now.ToLongDateString()</span><br />
+        <h3 class="text-lightgray" style="margin-top:0px;font-size:19px;">@DateTime.Now.ToString("HH:mm")</h3>
     </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

@@ -11,5 +11,8 @@ namespace ShoppingListApp.Infrastructure.Interfaces
         IEnumerable<ShoppingItem> ShoppingItems { get; }
 
         ShoppingItem GetByID(int id);
+        void AddShoppingItem( string itemName, Store store);//);//
+        void DeleteShoppingItem(int itemID);
+        void ToggleUrgent(int itemID);
     }
 }

@@ -9,6 +9,8 @@ namespace ShoppingListApp.Infrastructure.Models
     public class ShoppingItemRepository : IShoppingItemRepository
     {
         private readonly AppDbContext appDbContext;
+        
+        public string NewItemName { get; set; }
 
         public ShoppingItemRepository(AppDbContext appDbContext)
         {
@@ -20,6 +22,30 @@ namespace ShoppingListApp.Infrastructure.Models
         public ShoppingItem GetByID(int id)
         {
             return appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == id);
+        }
+        
+        public void AddShoppingItem(string itemName, Store store)//)//
+        {
+            appDbContext.ShoppingItems.Add( new ShoppingItem() { Name = itemName, Store=store } );
+            appDbContext.SaveChanges();
+        }
+
+        public void DeleteShoppingItem(int itemID)//)//
+        {
+            ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
+            if (s == null)
+                return;
+            appDbContext.ShoppingItems.Remove(s);
+            appDbContext.SaveChanges();
+        }
+
+        public void ToggleUrgent(int itemID)//)//
+        {
+            ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
+            if (s == null)
+                return;
+            s.Urgent = !s.Urgent;
+            appDbContext.SaveChanges();
         }
     }
 }

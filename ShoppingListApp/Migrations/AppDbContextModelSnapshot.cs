@@ -29,6 +29,8 @@ namespace ShoppingListApp.Migrations
 
                     b.Property<int>("Store");
 
+                    b.Property<bool>("Urgent");
+
                     b.HasKey("ID");
 
                     b.ToTable("ShoppingItems");

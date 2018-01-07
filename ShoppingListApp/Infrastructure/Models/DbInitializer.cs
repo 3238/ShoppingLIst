@@ -14,6 +14,7 @@ namespace ShoppingListApp.Infrastructure.Models
             using (var serviceScope = appBuilder.ApplicationServices.CreateScope())
             {
                 AppDbContext context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+                //context.D.Database.Migrate
                 context.Database.EnsureCreated();
                 if (!context.ShoppingItems.Any())
                 {
