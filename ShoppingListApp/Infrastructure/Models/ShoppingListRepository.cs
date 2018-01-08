@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 
 namespace ShoppingListApp.Infrastructure.Models
 {
-    public class ShoppingItemRepository : IShoppingItemRepository
+    public class ShoppingListRepository : IShoppingListRepository
     {
         private readonly AppDbContext appDbContext;
         
         public string NewItemName { get; set; }
-
-        public ShoppingItemRepository(AppDbContext appDbContext)
-        {
-            this.appDbContext = appDbContext;
-        }
-
         public IEnumerable<ShoppingItem> ShoppingItems => appDbContext.ShoppingItems;
 
-        public ShoppingItem GetByID(int id)
+        public ShoppingListRepository(AppDbContext appDbContext)
         {
-            return appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == id);
+            this.appDbContext = appDbContext;
         }
         
         public void AddShoppingItem(string itemName, Store store)//)//

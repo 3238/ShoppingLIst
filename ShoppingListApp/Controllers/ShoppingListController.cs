@@ -11,9 +11,9 @@ namespace ShoppingListApp.Controllers
 {
     public class ShoppingListController : Controller
     {
-        private IShoppingItemRepository shoppingItemRepository;
+        private IShoppingListRepository shoppingItemRepository;
 
-        public ShoppingListController(IShoppingItemRepository shoppingItemRepository)
+        public ShoppingListController(IShoppingListRepository shoppingItemRepository)
         {
             this.shoppingItemRepository = shoppingItemRepository;
         }
@@ -26,10 +26,19 @@ namespace ShoppingListApp.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)//string itemName)
+        public IActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)//string itemName)
         {
-            shoppingItemRepository.AddShoppingItem(shoppingItemVM.NewItemName, shoppingItemVM.NewItemShop);// itemName);
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                shoppingItemRepository.AddShoppingItem(shoppingItemVM.NewItemName, shoppingItemVM.NewItemShop);// itemName);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                ShoppingListViewModel vm = new ShoppingListViewModel();
+                vm.ShoppingItemRepository = shoppingItemRepository;
+                return View("List", vm);
+            }
         }
 
         [HttpPost]

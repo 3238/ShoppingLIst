@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -25,14 +26,15 @@ namespace ShoppingListApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IShoppingItemRepository, ShoppingItemRepository>();
-            services.AddMvc();
+            services.AddTransient<IShoppingListRepository, ShoppingListRepository>();
+            services.AddMvc()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -41,9 +43,9 @@ namespace ShoppingListApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
