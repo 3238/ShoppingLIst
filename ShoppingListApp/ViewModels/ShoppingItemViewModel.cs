@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingListApp.ViewModels
 {
-    public class ShoppingItemViewModel
+    public class ShoppingListViewModel
     {
         public IShoppingItemRepository ShoppingItemRepository {get;set;}
         public string NewItemName { get; set; }

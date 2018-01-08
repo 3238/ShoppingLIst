@@ -1,0 +1,6 @@
+TODO
+
+- xUnit Tests
+- Refactor File And Class Names
+- Enable Docker 
+- Publish to NAS

@@ -9,24 +9,24 @@ using ShoppingListApp.ViewModels;
 
 namespace ShoppingListApp.Controllers
 {
-    public class ShoppingItemController : Controller
+    public class ShoppingListController : Controller
     {
         private IShoppingItemRepository shoppingItemRepository;
 
-        public ShoppingItemController(IShoppingItemRepository shoppingItemRepository)
+        public ShoppingListController(IShoppingItemRepository shoppingItemRepository)
         {
             this.shoppingItemRepository = shoppingItemRepository;
         }
 
         public IActionResult List()
         {
-            ShoppingItemViewModel vm = new ShoppingItemViewModel();
+            ShoppingListViewModel vm = new ShoppingListViewModel();
             vm.ShoppingItemRepository = shoppingItemRepository;
             return View(vm);
         }
 
         [HttpPost]
-        public RedirectToActionResult AddShoppingItem(ShoppingItemViewModel shoppingItemVM)//string itemName)
+        public RedirectToActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)//string itemName)
         {
             shoppingItemRepository.AddShoppingItem(shoppingItemVM.NewItemName, shoppingItemVM.NewItemShop);// itemName);
             return RedirectToAction("List");

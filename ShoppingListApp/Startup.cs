@@ -48,7 +48,7 @@ namespace ShoppingListApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=ShoppingItem}/{action=List}/{id?}");
+                    template: "{controller=ShoppingList}/{action=List}/{id?}");
             });
 
             DbInitializer.Seed(app);

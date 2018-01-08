@@ -1,4 +1,4 @@
-﻿@model ShoppingListApp.ViewModels.ShoppingItemViewModel
+﻿@model ShoppingListApp.ViewModels.ShoppingListViewModel
 
 @{
     ViewData["Title"] = "List";
@@ -15,7 +15,7 @@
             <select asp-for="NewItemShop" asp-items="(Html.GetEnumSelectList<Store>())" class="form-control"></select>
 
             <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary" asp-controller="ShoppingItem" asp-action="AddShoppingItem">+</button>
+                <button type="submit" class="btn btn-primary" asp-controller="ShoppingList" asp-action="AddShoppingItem">+</button>
             </span>
         </div>
         }
@@ -39,11 +39,11 @@
                 <span class="@(item.Urgent == true ? "text-red bold" : "")">@item.Name</span>
             </td>
             <td style="width:25px;">
-                <a  asp-controller="ShoppingItem" asp-action="ToggleUrgent" asp-route-itemID="@item.ID">
+                <a  asp-controller="ShoppingList" asp-action="ToggleUrgent" asp-route-itemID="@item.ID">
                     <i class="fa fa-exclamation-circle @(item.Urgent == true ? "text-red" : "text-lightgray")"></i></a>
             </td>
             <td align="right" style="width:25px;">
-                <button class="btn-default btn-xs btn" asp-controller="ShoppingItem" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button>
+                <button class="btn-default btn-xs btn" asp-controller="ShoppingList" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button>
             </td>
         </tr>
         }
