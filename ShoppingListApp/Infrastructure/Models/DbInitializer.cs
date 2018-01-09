@@ -20,7 +20,7 @@ namespace ShoppingListApp.Infrastructure.Models
                 {
                     context.AddRange
                         (
-                       new ShoppingItem() { Name = "Grote look", Store = Store.Colruyt },
+                       new ShoppingItem() { Name = "Look", Store = Store.Colruyt },
                        new ShoppingItem() { Name = "Boter" },
                        new ShoppingItem() { Name = "Melk" },
                        new ShoppingItem() { Name = "Suiker" }
