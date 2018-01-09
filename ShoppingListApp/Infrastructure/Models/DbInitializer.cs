@@ -21,6 +21,7 @@ namespace ShoppingListApp.Infrastructure.Models
                     context.AddRange
                         (
                        new ShoppingItem() { Name = "Look", Store = Store.Colruyt },
+                       new ShoppingItem() { Name = "Brood", Store = Store.Colruyt },
                        new ShoppingItem() { Name = "Boter" },
                        new ShoppingItem() { Name = "Melk" },
                        new ShoppingItem() { Name = "Suiker" }
