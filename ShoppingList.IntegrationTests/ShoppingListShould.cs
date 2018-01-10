@@ -18,7 +18,7 @@ namespace ShoppingList.IntegrationTests
                 .Build();
 
             var builder = new WebHostBuilder()
-                .UseContentRoot(@"H:\Software\Tests\ShoppingList\ShoppingListApp")
+                .UseContentRoot("")
                 .UseEnvironment("Development")
                 .UseConfiguration(config)
                 .UseStartup<ShoppingListApp.Startup>();
