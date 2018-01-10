@@ -26,7 +26,7 @@ namespace ShoppingListApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IShoppingListRepository, ShoppingListRepository>();
+            services.AddScoped<IShoppingListRepository, ShoppingListRepository>();
             services.AddMvc();
         }
 

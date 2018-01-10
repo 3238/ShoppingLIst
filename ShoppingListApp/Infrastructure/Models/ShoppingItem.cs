@@ -11,10 +11,7 @@ namespace ShoppingListApp.Infrastructure.Models
     public class ShoppingItem
     {
         public int ID { get; set; }
-        [Required]
-        [StringLength(120, MinimumLength =3)]
         public string Name { get; set; }
-        [Required]
         public Store Store { get; set; }
         public bool Urgent { get; set; }
     }
