@@ -56,6 +56,29 @@ namespace ShoppingList.IntegrationTests
             response.EnsureSuccessStatusCode();
             Assert.Contains(newItemTxt, responseString);
         }
-        
+
+        [Fact]
+        public async Task RejectEmptyNewItemNames()
+        {
+            HttpResponseMessage initialResponse = await fixture.Client.GetAsync("/ShoppingList/List");
+            var antiForgeryValues = await fixture.ExtractAntiForgeryValues(initialResponse);
+
+            HttpRequestMessage postReq = new HttpRequestMessage(HttpMethod.Post, "/ShoppingList/AddShoppingItem");
+            postReq.Headers.Add("Cookie", new CookieHeaderValue(TestServerFixture.AntiForgeryCookieName, antiForgeryValues.cookieValue).ToString());
+            
+            string newItemTxt = "";
+            var formData = new Dictionary<string, string>
+            {
+                {TestServerFixture.AntiForgeryFieldName, antiForgeryValues.fieldValue},
+                {"NewItemName", newItemTxt }
+            };
+
+            postReq.Content = new FormUrlEncodedContent(formData);
+            HttpResponseMessage response = await fixture.Client.SendAsync(postReq);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            response.EnsureSuccessStatusCode();
+            Assert.Contains("Geef een naam voor het nieuwe item op aub", responseString);
+        }
     }
 }
