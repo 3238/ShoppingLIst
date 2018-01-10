@@ -1,4 +1,5 @@
-﻿@model ShoppingListApp.ViewModels.ShoppingListViewModel
+﻿@using Microsoft.AspNetCore
+@model ShoppingListApp.ViewModels.ShoppingListViewModel
 
 @{
     ViewData["Title"] = "List";
@@ -9,46 +10,44 @@
     <div style="margin-bottom:15px">
         @using (Html.BeginForm("ShoppingItem", "AddNewItem"))
         {
-        <div class="input-group">
-            @Html.TextBoxFor(m => m.NewItemName, new { @class = "form-control", @placeholder = "Nieuw item toevoegen..." })
-            <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
-            <select asp-for="NewItemShop" asp-items="(Html.GetEnumSelectList<Store>())" class="form-control"></select>
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.NewItemName, new { @class = "form-control", @placeholder = "Nieuw item toevoegen..." })
+                <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+                <select asp-for="NewItemShop" asp-items="(Html.GetEnumSelectList<Store>())" class="form-control"></select>
 
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary" asp-controller="ShoppingList" asp-action="AddShoppingItem">+</button>
-            </span>
-        </div>
-        <span asp-validation-for="NewItemName" class="text-red"></span>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" asp-controller="ShoppingList" asp-action="AddShoppingItem">+</button>
+                </span>
+            </div>
+            <span asp-validation-for="NewItemName" class="text-red"></span>
         }
     </div>
-
 </div>
 <div class="container">
     <table class="table" style="margin:0px">
         @using (Html.BeginForm("ShoppingItem"))
         {
-        @foreach (var shop in Model.ShoppingItemRepository.ShoppingItems.OrderByDescending(x=> x.Urgent).ThenBy(x=> x.Store).Select(x => x.Store).Distinct())
-        {
-        <tr>
-            <td class="bg-lightgray bold text-primary" colspan="3"><i class="fa fa-shopping-basket"></i>&nbsp;@shop.ToString().ToUpper()</td>
-        </tr>
-        @foreach (var item in Model.ShoppingItemRepository.ShoppingItems.Where(x => x.Store == shop).OrderByDescending(x => x.ID))
-        {
-        <tr>
-            <td>
-                <i class="fa fa-arrow-circle-right @(item.Urgent == true ? "text-red" : "text-lightgray")"></i>
-                <span class="@(item.Urgent == true ? "text-red bold" : "")">@item.Name</span>
-            </td>
-            <td style="width:25px;">
-                <a  asp-controller="ShoppingList" asp-action="ToggleUrgent" asp-route-itemID="@item.ID">
-                    <i class="fa fa-exclamation-circle @(item.Urgent == true ? "text-red" : "text-lightgray")"></i></a>
-            </td>
-            <td align="right" style="width:25px;">
-                <button class="btn-default btn-xs btn" asp-controller="ShoppingList" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button>
-            </td>
-        </tr>
-        }
-        }
+            @foreach (var shop in Model.ShoppingItemRepository.ShoppingItems.OrderByDescending(x => x.Urgent).ThenBy(x => x.Store).Select(x => x.Store).Distinct())
+            {
+                <tr>
+                    <td class="bg-lightgray bold text-primary" colspan="3"><i class="fa fa-shopping-basket"></i>&nbsp;@shop.ToString().ToUpper()</td>
+                </tr>
+                @foreach (var item in Model.ShoppingItemRepository.ShoppingItems.Where(x => x.Store == shop).OrderByDescending(x => x.ID))
+                {
+                    <tr>
+                        <td>
+                            <i class="fa fa-arrow-circle-right @(item.Urgent == true ? "text-red" : "text-lightgray")"></i>
+                            <span class="@(item.Urgent == true ? "text-red bold" : "")">@item.Name</span>
+                        </td>
+                        <td style="width:25px;">
+                            <button class="imagebutton" asp-controller="ShoppingList" asp-action="ToggleUrgent" asp-route-itemID="@item.ID"><i class="fa fa-exclamation-circle @(item.Urgent == true ? "text-red" : "text-lightgray")"></i></button>
+                        </td>
+                        <td align="right" style="width:25px;">
+                            <button class="btn-default btn-xs btn" asp-controller="ShoppingList" asp-action="DeleteShoppingItem" asp-route-itemID="@item.ID">-</button>
+                        </td>
+                    </tr>
+                }
+            }
         }
     </table>
 

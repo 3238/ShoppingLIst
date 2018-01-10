@@ -4,7 +4,10 @@
 }
 
 
-
+.bg-lightgray
+{
+    background-color:whitesmoke;
+}
 
 .color-white
 {
@@ -30,11 +33,13 @@ i
 {
     margin-right:0px;
 }
-.bg-lightgray
-{
-    background-color:whitesmoke;
-}
 .bold
 {
     font-weight:bold;
+}
+.imagebutton, .imagebutton:hover, .imagebutton:active
+{
+    outline: none;
+    background-color: transparent;
+    border: 0px;
 }

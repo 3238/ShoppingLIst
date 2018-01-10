@@ -27,9 +27,7 @@ namespace ShoppingListApp
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IShoppingListRepository, ShoppingListRepository>();
-            services.AddMvc()
-                .AddViewLocalization()
-                .AddDataAnnotationsLocalization();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

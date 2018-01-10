@@ -18,22 +18,22 @@ namespace ShoppingListApp.Infrastructure.Models
             this.appDbContext = appDbContext;
         }
         
-        public void AddShoppingItem(string itemName, Store store)//)//
+        public void AddShoppingItem(string itemName, Store store)
         {
             appDbContext.ShoppingItems.Add( new ShoppingItem() { Name = itemName, Store=store } );
             appDbContext.SaveChanges();
         }
 
-        public void DeleteShoppingItem(int itemID)//)//
+        public void DeleteShoppingItem(int itemID)
         {
             ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
             if (s == null)
-                throw new ArgumentNullException();
+                return; //Refresh after deleted item
             appDbContext.ShoppingItems.Remove(s);
             appDbContext.SaveChanges();
         }
 
-        public void ToggleUrgent(int itemID)//)//
+        public void ToggleUrgent(int itemID)
         {
             ShoppingItem s = appDbContext.ShoppingItems.FirstOrDefault(si => si.ID == itemID);
             if (s == null)

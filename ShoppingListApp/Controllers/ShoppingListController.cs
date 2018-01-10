@@ -22,36 +22,45 @@ namespace ShoppingListApp.Controllers
         {
             ShoppingListViewModel vm = new ShoppingListViewModel();
             vm.ShoppingItemRepository = shoppingItemRepository;
-            return View(vm);
+            return View("List", vm);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)//string itemName)
         {
             if (ModelState.IsValid)
             {
-                shoppingItemRepository.AddShoppingItem(shoppingItemVM.NewItemName, shoppingItemVM.NewItemShop);// itemName);
-                return RedirectToAction("List");
+                shoppingItemRepository.AddShoppingItem(shoppingItemVM.NewItemName, shoppingItemVM.NewItemShop);
+                ModelState.Clear();
             }
-            else
-            {
-                ShoppingListViewModel vm = new ShoppingListViewModel();
-                vm.ShoppingItemRepository = shoppingItemRepository;
-                return View("List", vm);
-            }
+
+            return List();
+
+            //else
+            //{
+            //}
+                //ShoppingListViewModel vm = new ShoppingListViewModel();
+                //vm.ShoppingItemRepository = shoppingItemRepository;
+                //return View("List", vm);
         }
 
         [HttpPost]
-        public RedirectToActionResult DeleteShoppingItem(int itemID)//string itemName)
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteShoppingItem(int itemID)//string itemName)
         {
             shoppingItemRepository.DeleteShoppingItem(itemID);// itemName);
-            return RedirectToAction("List");
+            return List();
+            //return RedirectToAction("List");
         }
         
-        public RedirectToActionResult ToggleUrgent(int itemID)//string itemName)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ToggleUrgent(int itemID)//string itemName)
         {
             shoppingItemRepository.ToggleUrgent(itemID);// itemName);
-            return RedirectToAction("List");
+            return List();
+            //return RedirectToAction("List");
         }
     }
 }
