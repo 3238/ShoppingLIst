@@ -14,12 +14,11 @@ namespace ShoppingListApp.Infrastructure.Models
             using (var serviceScope = appBuilder.ApplicationServices.CreateScope())
             {
                 AppDbContext context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-                //context.D.Database.Migrate
                 context.Database.EnsureCreated();
+
                 if (!context.ShoppingItems.Any())
                 {
-                    context.AddRange
-                        (
+                    context.AddRange (
                        new ShoppingItem() { Name = "Look", Store = Store.Colruyt },
                        new ShoppingItem() { Name = "Brood", Store = Store.Colruyt },
                        new ShoppingItem() { Name = "Boter" },

@@ -27,7 +27,7 @@ namespace ShoppingListApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)//string itemName)
+        public IActionResult AddShoppingItem(ShoppingListViewModel shoppingItemVM)
         {
             if (ModelState.IsValid)
             {
@@ -36,31 +36,22 @@ namespace ShoppingListApp.Controllers
             }
 
             return List();
-
-            //else
-            //{
-            //}
-                //ShoppingListViewModel vm = new ShoppingListViewModel();
-                //vm.ShoppingItemRepository = shoppingItemRepository;
-                //return View("List", vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteShoppingItem(int itemID)//string itemName)
+        public IActionResult DeleteShoppingItem(int itemID)
         {
-            shoppingItemRepository.DeleteShoppingItem(itemID);// itemName);
+            shoppingItemRepository.DeleteShoppingItem(itemID);
             return List();
-            //return RedirectToAction("List");
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ToggleUrgent(int itemID)//string itemName)
+        public IActionResult ToggleUrgent(int itemID)
         {
-            shoppingItemRepository.ToggleUrgent(itemID);// itemName);
+            shoppingItemRepository.ToggleUrgent(itemID);
             return List();
-            //return RedirectToAction("List");
         }
     }
 }
