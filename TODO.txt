@@ -1,6 +1,5 @@
 TODO
 
 - Demonstrate REST?
+- Demonstrate Angular?
 - Refactoring
-- Enable Docker 
-- Auto Publish to NAS and/or Azure

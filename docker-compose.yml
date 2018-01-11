@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  shoppinglistapp:
+    image: shoppinglistapp
+    build:
+      context: .
+      dockerfile: ShoppingListApp/Dockerfile
