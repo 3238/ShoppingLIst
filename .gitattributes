@@ -61,3 +61,10 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+
+###############################################################################
+# Change GitHub detected language
+
+* linguist-vendored
+*.cs linguist-vendored=false
